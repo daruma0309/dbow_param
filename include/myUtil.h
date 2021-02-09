@@ -1,3 +1,6 @@
+#ifndef MY_UTIL_H_
+#define MY_UTIL_H_
+
 #include <opencv2/opencv.hpp>
 #include <opencv2/video/tracking.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -6,6 +9,8 @@
 #include <opencv2/calib3d/calib3d.hpp>
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/core.hpp>
+
+#include <DBoW3/DBoW3.h>
 
 #include <iostream>
 #include <ctype.h>
@@ -20,14 +25,14 @@
 
 using namespace cv;
 using namespace std;
+using namespace DBoW3;
 
 Mat read_image(string filename_dir, int index) {
   // 画像を読み込む
-  string filename;
   ostringstream oss;
   oss << index;
-  filename = filename_dir + oss.str() + ".jpg";
-  image = cv::imread(filename, cv::IMREAD_UNCHANGED);
+  string filename = filename_dir + oss.str() + ".jpg";
+  Mat image = cv::imread(filename, cv::IMREAD_UNCHANGED);
 
   if (image.empty() == true) { // 画像が読み込めなくなったら
     cout << "no image." << endl;
@@ -35,3 +40,5 @@ Mat read_image(string filename_dir, int index) {
 
   return image;
 }
+
+#endif

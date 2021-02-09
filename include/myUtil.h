@@ -20,3 +20,18 @@
 
 using namespace cv;
 using namespace std;
+
+Mat read_image(string filename_dir, int index) {
+  // 画像を読み込む
+  string filename;
+  ostringstream oss;
+  oss << index;
+  filename = filename_dir + oss.str() + ".jpg";
+  image = cv::imread(filename, cv::IMREAD_UNCHANGED);
+
+  if (image.empty() == true) { // 画像が読み込めなくなったら
+    cout << "no image." << endl;
+  }
+
+  return image;
+}
